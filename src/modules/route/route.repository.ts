@@ -1,14 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { BaseAbstractRepository } from 'libs/common/src';
-import { Bank } from 'libs/common/src';
 import { Repository } from 'typeorm';
+import { Route } from 'src/modules/route/entities/route.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
-export class BankRepository extends BaseAbstractRepository<Bank> {
-    private _repository: Repository<Bank>;
-    constructor(@InjectRepository(Bank) bank: Repository<Bank>) {
-        super(bank);
-        this._repository = bank;
-    }
+export class RouteRepository extends Repository<Route> {
+  constructor(@InjectRepository(Route) entity: Repository<Route>) {
+    super(entity.target, entity.manager, entity.queryRunner);
+  }
 }

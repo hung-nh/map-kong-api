@@ -1,6 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { Route } from 'src/modules/route/entities/route.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Service } from './entities/service.entity';
 
 @Injectable()
-export class BankRepository extends Repository<Route> {}
+export class ServiceRepository extends Repository<Service> {
+  constructor(@InjectRepository(Service) entity: Repository<Service>) {
+    super(entity.target, entity.manager, entity.queryRunner);
+  }
+}
