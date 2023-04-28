@@ -15,6 +15,7 @@ export class RouteService {
   ) {}
 
   async saveRouter(): Promise<string> {
+    console.log(clientOpenApiUrl, serviceName, priority);
     const service: Service = await this.serviceRepository.findOne({
       where: {
         name: serviceName,
@@ -48,7 +49,7 @@ export class RouteService {
       router.name = pathToName;
       router.stripPath = false;
       router.protocols = '{http,https}';
-      router.regexPriority = 0;
+      router.regexPriority = priority;
       router.priority = priority;
       router.preserveHost = false;
       router.requestBuffering = true;

@@ -3,10 +3,7 @@ import { RouteService } from './route.service';
 
 @Controller('route')
 export class RouteController {
-  constructor(private readonly routeService: RouteService) {}
-
-  @Get()
-  saveRouterForService() {
-    return this.routeService.saveRouter();
+  constructor(private readonly routeService: RouteService) {
+    this.routeService.saveRouter();
   }
 }
